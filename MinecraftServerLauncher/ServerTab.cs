@@ -85,8 +85,10 @@ namespace MinecraftServerLauncher
 
         #region constructors
 
-        public ServerTab(Server server, TabControl container) : base(server.Title)
+        public ServerTab(Server? server, TabControl container) : base(server?.Title ?? "")
         {
+            if (server == null)
+                throw new ArgumentNullException(nameof(server));
             _container = container;
             _container.TabPages.Add(this);
             _server = server;
@@ -114,7 +116,7 @@ namespace MinecraftServerLauncher
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "java",
-                    Arguments = _server.getArguments(),
+                    Arguments = _server.GetArguments(),
                     WorkingDirectory = _server.WorkingDirectory,
                     RedirectStandardInput = true,
                     RedirectStandardError = true,

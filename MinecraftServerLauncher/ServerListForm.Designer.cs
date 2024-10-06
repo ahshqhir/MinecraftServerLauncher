@@ -81,35 +81,35 @@
             cmsServerList.Items.AddRange(new ToolStripItem[] { cmsServerListOpen, cmsServerListAdd, cmsServerListEdit, cmsServerListDelete });
             cmsServerList.Name = "cmsServerList";
             cmsServerList.Size = new Size(123, 100);
-            cmsServerList.Opening += cmsServerList_Opening;
+            cmsServerList.Opening += CmsServerList_Opening;
             // 
             // cmsServerListOpen
             // 
             cmsServerListOpen.Name = "cmsServerListOpen";
             cmsServerListOpen.Size = new Size(122, 24);
             cmsServerListOpen.Text = "Open";
-            cmsServerListOpen.Click += cmsServerListOpen_Click;
+            cmsServerListOpen.Click += CmsServerListOpen_Click;
             // 
             // cmsServerListAdd
             // 
             cmsServerListAdd.Name = "cmsServerListAdd";
             cmsServerListAdd.Size = new Size(122, 24);
             cmsServerListAdd.Text = "Add";
-            cmsServerListAdd.Click += cmsServerListAdd_Click;
+            cmsServerListAdd.Click += CmsServerListAdd_Click;
             // 
             // cmsServerListEdit
             // 
             cmsServerListEdit.Name = "cmsServerListEdit";
             cmsServerListEdit.Size = new Size(122, 24);
             cmsServerListEdit.Text = "Edit";
-            cmsServerListEdit.Click += cmsServerListEdit_Click;
+            cmsServerListEdit.Click += CmsServerListEdit_Click;
             // 
             // cmsServerListDelete
             // 
             cmsServerListDelete.Name = "cmsServerListDelete";
             cmsServerListDelete.Size = new Size(122, 24);
             cmsServerListDelete.Text = "Delete";
-            cmsServerListDelete.Click += cmsServerListDelete_Click;
+            cmsServerListDelete.Click += CmsServerListDelete_Click;
             // 
             // ServerListForm
             // 

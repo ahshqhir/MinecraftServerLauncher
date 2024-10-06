@@ -120,7 +120,7 @@
             btnServerJar.TabIndex = 1;
             btnServerJar.Text = "Browse";
             btnServerJar.UseVisualStyleBackColor = true;
-            btnServerJar.Click += btnServerJar_Click;
+            btnServerJar.Click += BtnServerJar_Click;
             // 
             // txtDirectory
             // 
@@ -137,7 +137,7 @@
             btnDirectory.TabIndex = 3;
             btnDirectory.Text = "Browse";
             btnDirectory.UseVisualStyleBackColor = true;
-            btnDirectory.Click += btnDirectory_Click;
+            btnDirectory.Click += BtnDirectory_Click;
             // 
             // numAllocRam
             // 
@@ -201,7 +201,7 @@
             btnOk.TabIndex = 11;
             btnOk.Text = "OK";
             btnOk.UseVisualStyleBackColor = true;
-            btnOk.Click += btnOk_Click;
+            btnOk.Click += BtnOk_Click;
             // 
             // ofdServerJar
             // 
@@ -227,28 +227,28 @@
             cmsArgument.Items.AddRange(new ToolStripItem[] { cmsArgumentAdd, cmsArgumentEdit, cmsArgumentDelete });
             cmsArgument.Name = "cmsArgument";
             cmsArgument.Size = new Size(123, 76);
-            cmsArgument.Opening += cmsArgument_Opening;
+            cmsArgument.Opening += CmsArgument_Opening;
             // 
             // cmsArgumentAdd
             // 
             cmsArgumentAdd.Name = "cmsArgumentAdd";
             cmsArgumentAdd.Size = new Size(122, 24);
             cmsArgumentAdd.Text = "Add";
-            cmsArgumentAdd.Click += cmsArgumentAdd_Click;
+            cmsArgumentAdd.Click += CmsArgumentAdd_Click;
             // 
             // cmsArgumentEdit
             // 
             cmsArgumentEdit.Name = "cmsArgumentEdit";
             cmsArgumentEdit.Size = new Size(122, 24);
             cmsArgumentEdit.Text = "Edit";
-            cmsArgumentEdit.Click += cmsArgumentEdit_Click;
+            cmsArgumentEdit.Click += CmsArgumentEdit_Click;
             // 
             // cmsArgumentDelete
             // 
             cmsArgumentDelete.Name = "cmsArgumentDelete";
             cmsArgumentDelete.Size = new Size(122, 24);
             cmsArgumentDelete.Text = "Delete";
-            cmsArgumentDelete.Click += cmsArgumentDelete_Click;
+            cmsArgumentDelete.Click += CmsArgumentDelete_Click;
             // 
             // lvJavaArgument
             // 
