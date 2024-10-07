@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace AHSHQHIR.MinecraftServerLauncher.Windows
+namespace AHSHQHIR.Windows.MinecraftServerLauncher
 {
     public partial class ServerListForm : Form
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text;
 
-namespace AHSHQHIR.MinecraftServerLauncher.Windows
+namespace AHSHQHIR.Windows.MinecraftServerLauncher
 {
     public class Server
     {

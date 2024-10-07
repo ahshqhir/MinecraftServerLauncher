@@ -7,7 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>$(SolutionName)</AssemblyName>
-    <RootNamespace>AHSHQHIR.$(SolutionName.Replace(" ", "_")).$(MSBuildProjectName)</RootNamespace>
+    <RootNamespace>AHSHQHIR.$(MSBuildProjectName).$(SolutionName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
 </Project>

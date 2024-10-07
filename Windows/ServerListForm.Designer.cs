@@ -1,4 +1,4 @@
-﻿namespace AHSHQHIR.MinecraftServerLauncher.Windows
+﻿namespace AHSHQHIR.Windows.MinecraftServerLauncher
 {
     partial class ServerListForm
     {
