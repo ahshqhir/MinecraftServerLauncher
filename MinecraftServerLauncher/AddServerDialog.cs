@@ -1,4 +1,4 @@
-﻿namespace MinecraftServerLauncher
+﻿namespace AHSHQHIR.MinecraftServerLauncher.Windows
 {
     public partial class AddServerDialog : Form
     {
