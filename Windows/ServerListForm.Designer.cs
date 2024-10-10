@@ -42,6 +42,7 @@
             cmsServerListAdd = new ToolStripMenuItem();
             cmsServerListEdit = new ToolStripMenuItem();
             cmsServerListDelete = new ToolStripMenuItem();
+            btnKill = new Button();
             tbcServer.SuspendLayout();
             tbpServerList.SuspendLayout();
             cmsJavaList.SuspendLayout();
@@ -56,6 +57,7 @@
             tbcServer.SelectedIndex = 0;
             tbcServer.Size = new Size(1093, 679);
             tbcServer.TabIndex = 0;
+            tbcServer.SelectedIndexChanged += TbcServer_SelectedIndexChanged;
             // 
             // tbpServerList
             // 
@@ -157,12 +159,26 @@
             cmsServerListDelete.Text = "Delete";
             cmsServerListDelete.Click += CmsServerListDelete_Click;
             // 
+            // btnKill
+            // 
+            btnKill.Enabled = false;
+            btnKill.Location = new Point(1011, 12);
+            btnKill.Name = "btnKill";
+            btnKill.Size = new Size(94, 29);
+            btnKill.TabIndex = 2;
+            btnKill.Text = "Kill";
+            btnKill.UseVisualStyleBackColor = true;
+            btnKill.Visible = false;
+            btnKill.Click += btnKill_Click;
+            // 
             // ServerListForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1117, 703);
+            Controls.Add(btnKill);
             Controls.Add(tbcServer);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "ServerListForm";
             Text = "Server List";
             FormClosing += ServerListForm_FormClosing;
@@ -188,5 +204,6 @@
         private ToolStripMenuItem cmsJavaListAdd;
         private ToolStripMenuItem cmsJavaListEdit;
         private ToolStripMenuItem cmsJavaListDelete;
+        private Button btnKill;
     }
 }

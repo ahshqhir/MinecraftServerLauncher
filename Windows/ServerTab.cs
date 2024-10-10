@@ -115,7 +115,7 @@ namespace AHSHQHIR.Windows.MinecraftServerLauncher
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "java",
+                    FileName = _server.Java?.Path ?? "java",
                     Arguments = _server.GetArguments(),
                     WorkingDirectory = _server.WorkingDirectory,
                     RedirectStandardInput = true,
@@ -136,7 +136,7 @@ namespace AHSHQHIR.Windows.MinecraftServerLauncher
             {
                 if (_serverProcess.HasExited)
                     return;
-                System.Threading.Thread.Sleep(100);
+                Thread.Sleep(500);
                 _serverProcess.Refresh();
                 _serverMainWin = _serverProcess.MainWindowHandle;
             }
@@ -147,10 +147,14 @@ namespace AHSHQHIR.Windows.MinecraftServerLauncher
             MoveWindow(_serverMainWin, 0, 0, 1085, 646, true);
             _serverProcess.Refresh();
 
-            while (!_serverProcess.HasExited)
+            while (!_serverProcess.HasExited && !_closed)
             {
-                Invoke(new Action(Focus));
-                System.Threading.Thread.Sleep(100);
+                try
+                {
+                    Invoke(new Action(Focus));
+                    Thread.Sleep(500);
+                }
+                catch { }
             }
 
             if (!_closed)

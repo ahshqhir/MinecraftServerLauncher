@@ -225,6 +225,17 @@ namespace AHSHQHIR.Windows.MinecraftServerLauncher
             }
         }
 
+        private void TbcServer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnKill.Enabled = btnKill.Visible = tbcServer.SelectedTab is ServerTab;
+        }
+
+        private void btnKill_Click(object sender, EventArgs e)
+        {
+            if (tbcServer.SelectedTab is ServerTab serverTab)
+                serverTab.Close();
+        }
+
         #endregion
     }
 }
