@@ -55,6 +55,8 @@
             lvJavaArgument = new ListView();
             lblJarArgument = new Label();
             lblJavaArgument = new Label();
+            cbJava = new ComboBox();
+            lblJava = new Label();
             ((System.ComponentModel.ISupportInitialize)numAllocRam).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numMaxRam).BeginInit();
             cmsArgument.SuspendLayout();
@@ -66,7 +68,7 @@
             lblServerJar.Location = new Point(12, 16);
             lblServerJar.Name = "lblServerJar";
             lblServerJar.Size = new Size(106, 20);
-            lblServerJar.TabIndex = 16;
+            lblServerJar.TabIndex = 14;
             lblServerJar.Text = "Server JAR file:";
             // 
             // lblDirectory
@@ -75,34 +77,34 @@
             lblDirectory.Location = new Point(12, 51);
             lblDirectory.Name = "lblDirectory";
             lblDirectory.Size = new Size(132, 20);
-            lblDirectory.TabIndex = 17;
+            lblDirectory.TabIndex = 15;
             lblDirectory.Text = "Working Directory:";
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Location = new Point(12, 86);
+            lblTitle.Location = new Point(12, 122);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(41, 20);
-            lblTitle.TabIndex = 13;
+            lblTitle.TabIndex = 17;
             lblTitle.Text = "Title:";
             // 
             // lblAllocRam
             // 
             lblAllocRam.AutoSize = true;
-            lblAllocRam.Location = new Point(12, 121);
+            lblAllocRam.Location = new Point(12, 157);
             lblAllocRam.Name = "lblAllocRam";
             lblAllocRam.Size = new Size(135, 20);
-            lblAllocRam.TabIndex = 14;
+            lblAllocRam.TabIndex = 18;
             lblAllocRam.Text = "Allocated Memory:";
             // 
             // lblMaxRam
             // 
             lblMaxRam.AutoSize = true;
-            lblMaxRam.Location = new Point(12, 156);
+            lblMaxRam.Location = new Point(12, 192);
             lblMaxRam.Name = "lblMaxRam";
             lblMaxRam.Size = new Size(137, 20);
-            lblMaxRam.TabIndex = 15;
+            lblMaxRam.TabIndex = 19;
             lblMaxRam.Text = "Maximum Memory:";
             // 
             // txtServerJar
@@ -141,64 +143,64 @@
             // 
             // numAllocRam
             // 
-            numAllocRam.Location = new Point(155, 119);
+            numAllocRam.Location = new Point(155, 155);
             numAllocRam.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numAllocRam.Name = "numAllocRam";
             numAllocRam.Size = new Size(100, 27);
-            numAllocRam.TabIndex = 5;
+            numAllocRam.TabIndex = 6;
             numAllocRam.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // numMaxRam
             // 
-            numMaxRam.Location = new Point(155, 154);
+            numMaxRam.Location = new Point(155, 190);
             numMaxRam.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numMaxRam.Name = "numMaxRam";
             numMaxRam.Size = new Size(100, 27);
-            numMaxRam.TabIndex = 7;
+            numMaxRam.TabIndex = 8;
             numMaxRam.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // txtTitle
             // 
-            txtTitle.Location = new Point(155, 83);
+            txtTitle.Location = new Point(155, 119);
             txtTitle.Name = "txtTitle";
             txtTitle.Size = new Size(200, 27);
-            txtTitle.TabIndex = 4;
+            txtTitle.TabIndex = 5;
             // 
             // cbAllocRam
             // 
             cbAllocRam.DropDownStyle = ComboBoxStyle.DropDownList;
             cbAllocRam.FormattingEnabled = true;
-            cbAllocRam.Location = new Point(261, 118);
+            cbAllocRam.Location = new Point(261, 154);
             cbAllocRam.Name = "cbAllocRam";
             cbAllocRam.Size = new Size(94, 28);
-            cbAllocRam.TabIndex = 6;
+            cbAllocRam.TabIndex = 7;
             // 
             // cbMaxRam
             // 
             cbMaxRam.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMaxRam.FormattingEnabled = true;
-            cbMaxRam.Location = new Point(261, 153);
+            cbMaxRam.Location = new Point(261, 189);
             cbMaxRam.Name = "cbMaxRam";
             cbMaxRam.Size = new Size(94, 28);
-            cbMaxRam.TabIndex = 8;
+            cbMaxRam.TabIndex = 9;
             // 
             // btnCancel
             // 
-            btnCancel.Font = new Font("Segoe UI", 14F);
-            btnCancel.Location = new Point(430, 81);
+            btnCancel.Font = new Font("Segoe UI", 17F);
+            btnCancel.Location = new Point(381, 86);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(150, 47);
-            btnCancel.TabIndex = 12;
+            btnCancel.Size = new Size(179, 55);
+            btnCancel.TabIndex = 13;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnOk
             // 
-            btnOk.Font = new Font("Segoe UI", 14F);
-            btnOk.Location = new Point(430, 134);
+            btnOk.Font = new Font("Segoe UI", 17F);
+            btnOk.Location = new Point(380, 153);
             btnOk.Name = "btnOk";
-            btnOk.Size = new Size(150, 47);
-            btnOk.TabIndex = 11;
+            btnOk.Size = new Size(181, 56);
+            btnOk.TabIndex = 12;
             btnOk.Text = "OK";
             btnOk.UseVisualStyleBackColor = true;
             btnOk.Click += BtnOk_Click;
@@ -214,10 +216,10 @@
             lvJarArgument.ContextMenuStrip = cmsArgument;
             lvJarArgument.HeaderStyle = ColumnHeaderStyle.None;
             lvJarArgument.LabelEdit = true;
-            lvJarArgument.Location = new Point(299, 207);
+            lvJarArgument.Location = new Point(299, 243);
             lvJarArgument.Name = "lvJarArgument";
             lvJarArgument.Size = new Size(281, 200);
-            lvJarArgument.TabIndex = 10;
+            lvJarArgument.TabIndex = 11;
             lvJarArgument.UseCompatibleStateImageBehavior = false;
             lvJarArgument.View = View.List;
             // 
@@ -256,37 +258,57 @@
             lvJavaArgument.ContextMenuStrip = cmsArgument;
             lvJavaArgument.HeaderStyle = ColumnHeaderStyle.None;
             lvJavaArgument.LabelEdit = true;
-            lvJavaArgument.Location = new Point(12, 207);
+            lvJavaArgument.Location = new Point(12, 243);
             lvJavaArgument.Name = "lvJavaArgument";
             lvJavaArgument.Size = new Size(281, 200);
-            lvJavaArgument.TabIndex = 9;
+            lvJavaArgument.TabIndex = 10;
             lvJavaArgument.UseCompatibleStateImageBehavior = false;
             lvJavaArgument.View = View.List;
             // 
             // lblJarArgument
             // 
             lblJarArgument.AutoSize = true;
-            lblJarArgument.Location = new Point(299, 184);
+            lblJarArgument.Location = new Point(299, 220);
             lblJarArgument.Name = "lblJarArgument";
             lblJarArgument.Size = new Size(166, 20);
-            lblJarArgument.TabIndex = 18;
+            lblJarArgument.TabIndex = 21;
             lblJarArgument.Text = "Extra Server Arguments:";
             // 
             // lblJavaArgument
             // 
             lblJavaArgument.AutoSize = true;
-            lblJavaArgument.Location = new Point(12, 184);
+            lblJavaArgument.Location = new Point(12, 220);
             lblJavaArgument.Name = "lblJavaArgument";
             lblJavaArgument.Size = new Size(153, 20);
-            lblJavaArgument.TabIndex = 19;
+            lblJavaArgument.TabIndex = 20;
             lblJavaArgument.Text = "Extra Java Arguments:";
+            // 
+            // cbJava
+            // 
+            cbJava.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbJava.FormattingEnabled = true;
+            cbJava.Location = new Point(155, 83);
+            cbJava.Name = "cbJava";
+            cbJava.Size = new Size(200, 28);
+            cbJava.TabIndex = 4;
+            // 
+            // lblJava
+            // 
+            lblJava.AutoSize = true;
+            lblJava.Location = new Point(12, 86);
+            lblJava.Name = "lblJava";
+            lblJava.Size = new Size(40, 20);
+            lblJava.TabIndex = 16;
+            lblJava.Text = "Java:";
             // 
             // AddServerDialog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
-            ClientSize = new Size(592, 419);
+            ClientSize = new Size(592, 455);
+            Controls.Add(lblJava);
+            Controls.Add(cbJava);
             Controls.Add(lblJavaArgument);
             Controls.Add(lblJarArgument);
             Controls.Add(lvJavaArgument);
@@ -310,7 +332,6 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "AddServerDialog";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "AddServerForm";
             Load += AddServerDialog_Load;
             ((System.ComponentModel.ISupportInitialize)numAllocRam).EndInit();
             ((System.ComponentModel.ISupportInitialize)numMaxRam).EndInit();
@@ -347,5 +368,7 @@
         private ToolStripMenuItem cmsArgumentDelete;
         private Label lblJarArgument;
         private Label lblJavaArgument;
+        private ComboBox cbJava;
+        private Label lblJava;
     }
 }

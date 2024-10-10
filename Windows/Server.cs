@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Text;
 
 namespace AHSHQHIR.Windows.MinecraftServerLauncher
 {
@@ -12,6 +11,7 @@ namespace AHSHQHIR.Windows.MinecraftServerLauncher
         public string? WorkingDirectory { get; set; }
         public string? AllocatedMemory { get; set; }
         public string? MaxMemory { get; set; }
+        public Java? Java { get; set; } = null;
         public IEnumerable<string>? JavaArguments { get; set; }
         public IEnumerable<string>? JarArguments { get; set; }
 
@@ -46,43 +46,27 @@ namespace AHSHQHIR.Windows.MinecraftServerLauncher
             writer.WriteLine($"WorkingDirectory={WorkingDirectory}");
             writer.WriteLine($"AllocatedMemory={AllocatedMemory}");
             writer.WriteLine($"MaxMemory={MaxMemory}");
+            if (Java != null)
+                writer.WriteLine($"Java={Java.Title}");
             writer.WriteLine($"JavaArguments={string.Join(" ", JavaArguments ?? [])}");
             writer.WriteLine($"JarArguments={string.Join(" ", JarArguments ?? [])}");
             writer.WriteLine("}");
         }
 
-        public static void WriteToFile(string path, List<Server> jars)
+        public static void WriteToFile(StreamWriter writer, List<Server> jars)
         {
-            FileStream? stream = null;
-            StreamWriter? writer = null;
-            try
-            {
-                if (!File.Exists(path))
-                    stream = File.Create(path);
-                else
-                    stream = File.Open(path, FileMode.Truncate);
-                writer = new StreamWriter(stream);
-                foreach (var jar in jars)
-                    jar?.AddToFile(writer);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (writer != null)
-                    writer?.Close();
-                if (stream != null)
-                    stream?.Close();
-            }
+            writer.WriteLine("[Servers]");
+            writer.WriteLine("((");
+            foreach (Server jar in jars)
+                jar.AddToFile(writer);
+            writer.WriteLine("))");
         }
 
-        private static Server ReadFromFile(StreamReader? reader)
+        private static Server GetFromFile(StreamReader reader, List<Java> javas)
         {
             Server jar = new Server();
             string line;
-            while ((line = (reader?.ReadLine() ?? "}")) != "}")
+            while ((line = reader.ReadLine() ?? "}") != "}")
             {
                 string[] parts = line.Split('=');
                 switch (parts[0])
@@ -102,6 +86,9 @@ namespace AHSHQHIR.Windows.MinecraftServerLauncher
                     case "MaxMemory":
                         jar.MaxMemory = parts[1];
                         break;
+                    case "Java":
+                        jar.Java = javas.FirstOrDefault(j => j.Title == parts[1]);
+                        break;
                     case "JavaArguments":
                         jar.JavaArguments = parts[1].Split(' ');
                         break;
@@ -113,29 +100,19 @@ namespace AHSHQHIR.Windows.MinecraftServerLauncher
             return jar;
         }
 
-        public static List<Server> ReadFromFile(string path)
+        public static List<Server> ReadFromFile(StreamReader reader, List<Java> javas)
         {
             List<Server> jars = new List<Server>();
-            FileStream? stream = null;
-            StreamReader? reader = null;
+            if (reader.ReadLine() != "((")
+                throw new WrongFileFormatException();
             try
             {
-                stream = File.Open(path, FileMode.Open);
-                reader = new StreamReader(stream);
-                while (!reader.EndOfStream)
-                    jars?.Add(ReadFromFile(reader));
+                while (reader.ReadLine() == "{")
+                    jars.Add(GetFromFile(reader, javas));
             }
-            catch (Exception e)
+            catch
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                jars = new List<Server>();
-            }
-            finally
-            {
-                if (reader != null)
-                    reader?.Close();
-                if (stream != null)
-                    stream?.Close();
+                throw new WrongFileFormatException();
             }
             return jars;
         }

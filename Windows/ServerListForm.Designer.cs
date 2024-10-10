@@ -31,6 +31,11 @@
             components = new System.ComponentModel.Container();
             tbcServer = new TabControl();
             tbpServerList = new TabPage();
+            lvJavaList = new ListView();
+            cmsJavaList = new ContextMenuStrip(components);
+            cmsJavaListAdd = new ToolStripMenuItem();
+            cmsJavaListEdit = new ToolStripMenuItem();
+            cmsJavaListDelete = new ToolStripMenuItem();
             lvServerList = new ListView();
             cmsServerList = new ContextMenuStrip(components);
             cmsServerListOpen = new ToolStripMenuItem();
@@ -39,6 +44,7 @@
             cmsServerListDelete = new ToolStripMenuItem();
             tbcServer.SuspendLayout();
             tbpServerList.SuspendLayout();
+            cmsJavaList.SuspendLayout();
             cmsServerList.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,6 +59,7 @@
             // 
             // tbpServerList
             // 
+            tbpServerList.Controls.Add(lvJavaList);
             tbpServerList.Controls.Add(lvServerList);
             tbpServerList.Location = new Point(4, 29);
             tbpServerList.Name = "tbpServerList";
@@ -62,15 +69,54 @@
             tbpServerList.Text = "Server List";
             tbpServerList.UseVisualStyleBackColor = true;
             // 
+            // lvJavaList
+            // 
+            lvJavaList.ContextMenuStrip = cmsJavaList;
+            lvJavaList.FullRowSelect = true;
+            lvJavaList.HeaderStyle = ColumnHeaderStyle.None;
+            lvJavaList.Location = new Point(546, 6);
+            lvJavaList.Name = "lvJavaList";
+            lvJavaList.Size = new Size(533, 634);
+            lvJavaList.TabIndex = 11;
+            lvJavaList.UseCompatibleStateImageBehavior = false;
+            lvJavaList.View = View.List;
+            // 
+            // cmsJavaList
+            // 
+            cmsJavaList.ImageScalingSize = new Size(20, 20);
+            cmsJavaList.Items.AddRange(new ToolStripItem[] { cmsJavaListAdd, cmsJavaListEdit, cmsJavaListDelete });
+            cmsJavaList.Name = "cmsServerList";
+            cmsJavaList.Size = new Size(123, 76);
+            // 
+            // cmsJavaListAdd
+            // 
+            cmsJavaListAdd.Name = "cmsJavaListAdd";
+            cmsJavaListAdd.Size = new Size(122, 24);
+            cmsJavaListAdd.Text = "Add";
+            cmsJavaListAdd.Click += CmsJavaListAdd_Click;
+            // 
+            // cmsJavaListEdit
+            // 
+            cmsJavaListEdit.Name = "cmsJavaListEdit";
+            cmsJavaListEdit.Size = new Size(122, 24);
+            cmsJavaListEdit.Text = "Edit";
+            cmsJavaListEdit.Click += CmsJavarListEdit_Click;
+            // 
+            // cmsJavaListDelete
+            // 
+            cmsJavaListDelete.Name = "cmsJavaListDelete";
+            cmsJavaListDelete.Size = new Size(122, 24);
+            cmsJavaListDelete.Text = "Delete";
+            cmsJavaListDelete.Click += CmsJavaListDelete_Click;
+            // 
             // lvServerList
             // 
-            lvServerList.AllowDrop = true;
             lvServerList.ContextMenuStrip = cmsServerList;
+            lvServerList.FullRowSelect = true;
             lvServerList.HeaderStyle = ColumnHeaderStyle.None;
-            lvServerList.LabelEdit = true;
             lvServerList.Location = new Point(6, 6);
             lvServerList.Name = "lvServerList";
-            lvServerList.Size = new Size(1073, 634);
+            lvServerList.Size = new Size(534, 634);
             lvServerList.TabIndex = 10;
             lvServerList.UseCompatibleStateImageBehavior = false;
             lvServerList.View = View.List;
@@ -122,6 +168,7 @@
             FormClosing += ServerListForm_FormClosing;
             tbcServer.ResumeLayout(false);
             tbpServerList.ResumeLayout(false);
+            cmsJavaList.ResumeLayout(false);
             cmsServerList.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -136,5 +183,10 @@
         private ToolStripMenuItem cmsServerListAdd;
         private ToolStripMenuItem cmsServerListEdit;
         private ToolStripMenuItem cmsServerListDelete;
+        private ListView lvJavaList;
+        private ContextMenuStrip cmsJavaList;
+        private ToolStripMenuItem cmsJavaListAdd;
+        private ToolStripMenuItem cmsJavaListEdit;
+        private ToolStripMenuItem cmsJavaListDelete;
     }
 }

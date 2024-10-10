@@ -20,6 +20,8 @@
             new() { Text = "GB", Char = "G", Value = 1024 }
         };
 
+        private readonly Java NULL = new() { Title = "(Default)" };
+
         #endregion
 
         #region fields
@@ -31,6 +33,7 @@
         #region properties
 
         public Server? Server { get; set; }
+        public List<Java>? Javas { get; set; }
 
         #endregion
 
@@ -45,38 +48,49 @@
             cbMaxRam.SelectedIndex = 0;
             cbAllocRam.DisplayMember = "Text";
             cbMaxRam.DisplayMember = "Text";
+            cbJava.DisplayMember = "Title";
             numAllocRam.Maximum = int.MaxValue;
             numMaxRam.Maximum = int.MaxValue;
         }
 
         #endregion
 
-        #region methods
+        #region event handlers
 
         private void AddServerDialog_Load(object sender, EventArgs e)
         {
             if (Server == null)
-                return;
+                Text = "Add new server";
+            else
+                Text = "Edit server";
             var charLList = ITEMS.Select(x => x.Char).ToList();
-            txtTitle.SetText(Server.Title);
-            txtServerJar.SetText(Server.Path);
-            txtDirectory.SetText(Server.WorkingDirectory);
-            numAllocRam.Value = Decimal.Parse(Server.AllocatedMemory.Substring(0, Server.AllocatedMemory.Length - 1));
-            cbAllocRam.SelectedIndex = charLList.IndexOf(Server.AllocatedMemory.Last().ToString());
-            numMaxRam.Value = Decimal.Parse(Server.MaxMemory.Substring(0, Server.MaxMemory.Length - 1));
-            cbMaxRam.SelectedIndex = charLList.IndexOf(Server.MaxMemory.Last().ToString());
-            lvJavaArgument.Items.AddRange(Server.JavaArguments.Select(x => new ListViewItem(x)).ToArray());
-            lvJarArgument.Items.AddRange(Server.JarArguments.Select(x => new ListViewItem(x)).ToArray());
+            txtTitle.SetText(Server?.Title);
+            txtServerJar.SetText(Server?.Path);
+            txtDirectory.SetText(Server?.WorkingDirectory);
+            numAllocRam.Value = Decimal.Parse(Server?.AllocatedMemory?.Substring(0, Server.AllocatedMemory.Length - 1) ?? "1");
+            cbAllocRam.SelectedIndex = charLList.IndexOf((Server?.AllocatedMemory ?? "M").Last().ToString());
+            numMaxRam.Value = Decimal.Parse(Server?.MaxMemory?.Substring(0, Server.MaxMemory.Length - 1) ?? "1");
+            cbMaxRam.SelectedIndex = charLList.IndexOf((Server?.MaxMemory ?? "M").Last().ToString());
+            lvJavaArgument.Items.AddRange((Server?.JavaArguments ?? [])
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Select(s => new ListViewItem(s))
+                .ToArray());
+            lvJarArgument.Items.AddRange((Server?.JarArguments ?? [])
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Select(s => new ListViewItem(s))
+                .ToArray());
+
+            cbJava.Items.Clear();
+            cbJava.Items.Add(NULL);
+            cbJava.Items.AddRange(ServerListForm.Javas.ToArray());
+            cbJava.SelectedItem = Server?.Java ?? NULL;
         }
-
-        #endregion
-
-        #region event handlers
 
         private void BtnOk_Click(object sender, EventArgs e)
         {
             Item? alloc = (Item?)cbAllocRam.SelectedItem;
             Item? max = (Item?)cbMaxRam.SelectedItem;
+            Java? java = (Java?)cbJava.SelectedItem;
 
             if (!File.Exists(txtServerJar.Text) || Path.GetExtension(txtServerJar.Text) != ".jar")
                 MessageBox.Show("Invalid JAR path!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -99,6 +113,7 @@
                     WorkingDirectory = txtDirectory.Text,
                     AllocatedMemory = numAllocRam.Text + alloc?.Char,
                     MaxMemory = numMaxRam.Text + max?.Char,
+                    Java = java == NULL ? null : java,
                     JavaArguments = lvJavaArgument.Items.Cast<ListViewItem>().Select(x => x.Text).Where(s => !string.IsNullOrEmpty(s)),
                     JarArguments = lvJarArgument.Items.Cast<ListViewItem>().Select(x => x.Text).Where(s => !string.IsNullOrEmpty(s))
                 };
@@ -116,7 +131,7 @@
                 txtTitle.SetText(Path.GetFileNameWithoutExtension(ofdServerJar.FileName));
             if (string.IsNullOrEmpty(txtDirectory.Text))
             {
-                txtDirectory.SetText(Path.GetDirectoryName(ofdServerJar.FileName) ?? "");
+                txtDirectory.SetText(Path.GetDirectoryName(ofdServerJar.FileName));
                 fbdDirectory.SelectedPath = txtDirectory.Text;
             }
         }

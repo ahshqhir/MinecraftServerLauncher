@@ -85,7 +85,7 @@ namespace AHSHQHIR.Windows.MinecraftServerLauncher
 
         #region constructors
 
-        public ServerTab(Server? server, TabControl container) : base(server?.Title ?? "")
+        public ServerTab(Server? server, TabControl container) : base(server?.Title ?? string.Empty)
         {
             if (server == null)
                 throw new ArgumentNullException(nameof(server));
