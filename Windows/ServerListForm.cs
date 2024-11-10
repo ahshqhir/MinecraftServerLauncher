@@ -29,6 +29,7 @@ namespace AHSHQHIR.Windows.MinecraftServerLauncher
         {
             InitializeComponent();
             LoadFile();
+            this.Icon = Properties.Resources.MainIcon;
         }
 
         #endregion
